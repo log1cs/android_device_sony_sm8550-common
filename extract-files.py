@@ -76,6 +76,8 @@ blob_fixups: blob_fixups_user_type = {
     .add_needed(
         'libc++_shared.so',
     ),
+    'vendor/etc/media_codecs_kalama.xml': blob_fixup()
+        .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|dolby_audio|sony_c2_audio|vendor_audio).*\n', ''),
     'vendor/etc/msm_irqbalance.conf': blob_fixup()
     .regex_replace(
         'IGNORED_IRQ=27,23,38', 'IGNORED_IRQ=27,23,38,115,332'
