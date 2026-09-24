@@ -74,10 +74,6 @@ PRODUCT_COPY_FILES += \
 
 $(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
 
-# Authsecret
-PRODUCT_PACKAGES += \
-    android.hardware.authsecret@1.0.vendor
-
 # Bluetooth
 $(call soong_config_set,bluetooth_module,leaudio_lc3_default_bit,24)
 PRODUCT_PACKAGES += \
