@@ -150,6 +150,14 @@ vendor/lib64/libvui_dmgr.so
 vendor/lib64/libvui_dmgr_client.so
 vendor/lib64/vendor.qti.hardware.pal@1.0-impl.so
 
+# Audio configs
+vendor/etc/audio/sku_kalama/resourcemanager_kalama_qrd.xml
+vendor/etc/audio/sku_kalama/mixer_paths_kalama_qrd.xml
+vendor/etc/audio_policy_volumes.xml
+vendor/etc/default_volume_tables.xml
+vendor/etc/microphone_characteristics.xml
+vendor/etc/usecaseKvManager.xml
+
 # Audio FX modules
 vendor/lib64/soundfx/libasphere.so
 vendor/lib64/soundfx/libquasar.so
@@ -769,6 +777,9 @@ vendor/bin/init.qti.kernel.sh
 vendor/bin/system_dlkm_modprobe.sh
 vendor/bin/vendor_modprobe.sh
 
+# Keylayout
+system/usr/keylayout/gpio-keys.kl:vendor/usr/keylayout/gpio-keys.kl
+
 # Keymaster
 vendor/bin/hw/android.hardware.security.keymint-service-qti
 vendor/etc/init/android.hardware.security.keymint-service-qti.rc
@@ -814,6 +825,8 @@ vendor/etc/init/qconfig.rc
 vendor/etc/init/vendor.qti.media.c2@1.0-service.rc
 vendor/etc/init/vendor.qti.media.c2audio@1.0-service.rc
 vendor/etc/media_codecs.xml
+vendor/etc/media_codecs_kalama_vendor.xml:vendor/etc/media_codecs_kalama.xml;TRYSRCFIRST
+vendor/etc/media_codecs_performance_kalama_vendor.xml:vendor/etc/media_codecs_performance_kalama.xml;TRYSRCFIRST
 vendor/etc/media_kalama/video_system_specs.json
 vendor/etc/media_profiles.xml
 vendor/etc/media_profiles_V1_0.xml
