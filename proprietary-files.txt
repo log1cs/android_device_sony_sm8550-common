@@ -144,8 +144,8 @@ vendor/lib64/libvui_dmgr_client.so
 vendor/lib64/vendor.qti.hardware.pal@1.0-impl.so
 
 # Audio configs
-vendor/etc/audio/sku_kalama/resourcemanager_kalama_qrd.xml
 vendor/etc/audio/sku_kalama/mixer_paths_kalama_qrd.xml
+vendor/etc/audio/sku_kalama/resourcemanager_kalama_qrd.xml
 vendor/etc/audio_policy_volumes.xml
 vendor/etc/default_volume_tables.xml
 vendor/etc/microphone_characteristics.xml
@@ -443,10 +443,10 @@ vendor/etc/display/DPU820.xml
 vendor/etc/display/DPU8__.xml
 vendor/etc/display/DPU9__.xml
 vendor/etc/display/advanced_sf_offsets.xml
+vendor/lib64/libSonyDisplayProperties.so
 vendor/lib64/libclstc_hdr.so
 vendor/lib64/libintervmipc.so
 vendor/lib64/libqrtrclient.so
-vendor/lib64/libSonyDisplayProperties.so
 
 # Display (SDM) - From Motorola rtwo_g-user 14 U1TR34.8-30-13 c6cfc-4ed033 release-keys - RETAIL
 vendor/lib64/libclstc_algorithm_adapter.so|83c9312dc159fb7b26f209771c9af0a4765abaaa
@@ -519,8 +519,8 @@ vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so
 
 # Fingerprint
 vendor/lib64/hw/bix.fingerprint.default.so:vendor/lib64/hw/fingerprint.default.so;FIX_SONAME
-vendor/lib64/lib_bix_idd.so
 vendor/lib64/libRbsFlow.so
+vendor/lib64/lib_bix_idd.so
 vendor/lib64/libets_teeclient_v2.so
 vendor/lib64/libree_bix_agent.so
 
@@ -652,7 +652,6 @@ vendor/lib64/vendor.semc.system.idd@1.1.so
 # IMS
 system/lib64/vendor.qti.diaghal-V1-ndk.so
 system_ext/app/ImsRcsService/ImsRcsService.apk
-system_ext/priv-app/QtiTelephony/QtiTelephony.apk
 system_ext/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml
 system_ext/etc/permissions/vendor.qti.ims.rcsservice.xml
 system_ext/etc/sysconfig/qti_telephony_system_packages_config.xml
@@ -681,6 +680,7 @@ system_ext/lib64/libimsmedia_jni.so;SYMLINK=system_ext/priv-app/ims/lib/arm64/li
 system_ext/lib64/vendor.qti.ImsRtpService-V1-ndk.so
 system_ext/lib64/vendor.qti.imsrtpservice@3.0.so
 system_ext/lib64/vendor.qti.imsrtpservice@3.1.so
+system_ext/priv-app/QtiTelephony/QtiTelephony.apk
 system_ext/priv-app/ims/ims.apk
 vendor/bin/ims_rtp_daemon
 vendor/bin/imsdaemon
@@ -1182,8 +1182,8 @@ vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.1.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.2.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0.so
 vendor/lib64/vendor.semc.hardware.spc-V1-ndk_platform.so
-vendor/lib64/vendor.somc.hardware.radio@1.0.so
 vendor/lib64/vendor.somc.hardware.aidlradio-V1-ndk.so
+vendor/lib64/vendor.somc.hardware.radio@1.0.so
 
 # RIL - UIM
 product/app/uimgbaservice/uimgbaservice.apk
@@ -1246,9 +1246,9 @@ vendor/bin/ssr_setup
 vendor/bin/subsystem_ramdump
 
 # Secd
-system_ext/lib64/libMiscTaWrapper.so:vendor/lib64/libMiscTaWrapper.so
 system_ext/etc/permissions/jp.co.sony.mc.misctasdklibrary.xml
 system_ext/framework/jp.co.sony.mc.misctasdklibrary.jar
+system_ext/lib64/libMiscTaWrapper.so:vendor/lib64/libMiscTaWrapper.so
 vendor/bin/hw/vendor.semc.hardware.secd@1.1-service
 vendor/bin/hw/vendor.somc.hardware.miscta@1.0-service
 vendor/etc/init/init.taqmi.rc
@@ -1365,10 +1365,10 @@ vendor/etc/sensors/hals.conf
 vendor/etc/sensors/sns_reg_config
 vendor/lib64/hw/vendor.qti.hardware.sensorscalibrate@1.0-impl.so
 vendor/lib64/libsensorcal.so
-vendor/lib64/libsnsdiaglog.so
 vendor/lib64/libsensorslog.so
 vendor/lib64/libsns_direct_channel_stub.so
 vendor/lib64/libsnsapi.so
+vendor/lib64/libsnsdiaglog.so
 vendor/lib64/libsnsutils.so
 vendor/lib64/libssc.so
 vendor/lib64/sensors.ssc.so
@@ -1549,5 +1549,5 @@ vendor/etc/init/android.hardware.drm-service.widevine.rc
 vendor/etc/vintf/manifest/manifest_android.hardware.drm-service.widevine.xml
 vendor/lib64/libhdcpsrm.so
 vendor/lib64/liboemcrypto.so
-vendor/lib64/libwvutil.so
 vendor/lib64/libwvaidl.so
+vendor/lib64/libwvutil.so
