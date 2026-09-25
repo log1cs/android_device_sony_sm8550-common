@@ -3,16 +3,36 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-service msim_sh /odm/bin/init.qcom.msim.sh
-    user root
-    group root
-    oneshot
+on early-boot
+    # Display
+    chown system system /sys/devices/dsi_panel_driver/flm2_mode
+    chown system system /sys/devices/dsi_panel_driver/camera_flash_brightness
+    chown system system /sys/devices/dsi_panel_driver/thermal_limit
+    chown system system /sys/devices/dsi_panel_driver/somc_max_luminance
+    chown system oem_2987 /sys/devices/dsi_panel_driver/area_count
+    chown system oem_2987 /sys/devices/dsi_panel_driver/panel_id
+    chmod 0440 /sys/devices/dsi_panel_driver/panel_id
+    chown system system /sys/module/msm_drm/parameters/dp_validate_mode
+    chown system system /sys/devices/dsi_panel_driver/somc_max_brightness
+
+on early-init
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/ lxs_touchscreen et603-int
+    wait /dev/block/by-name/LTALabel
+    exec_start msim_sh
+
+on init
+    wait /dev/block/bootdevice/by-name/TA
+    start tad
+    write /sys/kernel/cnss/recovery 1
 
 on boot
     # Enable smart charging
     wait /sys/class/battchg_ext/smart_charging_activation
     write /sys/class/battchg_ext/smart_charging_activation 1
     chown system system /sys/class/battchg_ext/smart_charging_interruption
+
+    # Touch screen
+    write /sys/devices/virtual/input/lxs_ts_input/after_probe 1
 
     # Set up permission for touch framerate node
     chown system system /sys/devices/virtual/input/lxs_ts_input/frame_rate_np
@@ -21,13 +41,98 @@ on boot
     chown system system /sys/devices/virtual/input/lxs_ts_input/enable_knock
     chown system system /sys/devices/dsi_panel_driver/pre_sod_mode
 
-on early-init
-    # radio
-    wait /dev/block/by-name/LTALabel
-    exec_start msim_sh
+    # Charger
+    chmod 0664 /sys/class/battman_dbg/log_interval
+    chmod 0664 /sys/class/battman_dbg/log_categories
+    chmod 0664 /sys/class/battman_dbg/log_level
+    chmod 0664 /sys/class/battman_dbg/regupdate_interval
+    chmod 0664 /sys/class/battchg_ext/usb_input_suspend
+    chmod 0664 /sys/class/battchg_ext/lrc_charge_disable
+    chmod 0664 /sys/class/battchg_ext/lrc_input_suspend
+    chmod 0664 /sys/class/battchg_ext/batt_aging_level
+    chmod 0664 /sys/class/battchg_ext/system_temp_level
+    chmod 0664 /sys/class/battchg_ext/restored_capacity
+    chmod 0444 /sys/kernel/debug/battery_debug/votables/fv_tot/status
+    chmod 0444 /sys/kernel/debug/battery_debug/votables/iusb0_tot/status
+    chmod 0444 /sys/kernel/debug/battery_debug/votables/fcc_tot/status
+    chmod 0664 /sys/class/qcom-battery/wireless_boost_en
 
 on post-fs
+    # Sensor
+    chown system system /mnt/vendor/persist/sensors
+    chown system system /mnt/vendor/persist/sensors/sns.reg
+    chown system system /mnt/vendor/persist/sensors/sensors_list.txt
+    chown system system /mnt/vendor/persist/sensors/registry
+    chown system system /mnt/vendor/persist/sensors/registry/registry
+    chown system system /mnt/vendor/persist/sensors/registry/registry/sensors_registry
+    chown system system /mnt/vendor/persist/sensors/sensors_settings
+    chown system system /mnt/vendor/persist/sensors/registry/sns_reg_config
+    chown system system /mnt/vendor/persist/sensors/registry/sns_reg_version
+    chown system system /mnt/vendor/persist/sensors/registry/config
+    chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
+
+    # Wifi
+    mkdir /mnt/vendor/persist/wifi 0700 root system
+    mkdir /mnt/vendor/persist/wifi/kiwi_v2 0700 root system
+
     setprop ro.vendor.ltalabel.model ${vendor.radio.ltalabel.model}
+
+on post-fs-data
+    # backlight
+    chown system system /sys/class/backlight/panel0-backlight/brightness
+
+    # Fingerprint EGIS irq
+    chown system system /dev/esfp0
+    chmod 0600 /dev/esfp0
+    mkdir /data/vendor/egis 0770 system system
+    start ets_hal
+
+    # Create 360ra dir for audioHAL
+    mkdir /data/vendor/360ra 0775 audioserver audio
+    copy /vendor/etc/alc.speaker.bin /data/vendor/360ra/alc.speaker.bin
+    chmod 0770 /data/vendor/360ra/alc.speaker.bin
+    chown audioserver audio /data/vendor/360ra/alc.speaker.bin
+
+    # Charger
+    chmod 0664 /sys/class/power_supply/battery/uevent
+    chmod 0664 /sys/class/power_supply/wireless/uevent
+    chmod 0664 /sys/class/power_supply/usb/uevent
+
+on charger
+    # Charger
+    wait /sys/class/battchg_ext
+    chmod 0664 /sys/class/battchg_ext/usb_input_suspend
+    chmod 0664 /sys/class/battchg_ext/lrc_charge_disable
+    chmod 0664 /sys/class/battchg_ext/lrc_input_suspend
+    chmod 0664 /sys/class/battchg_ext/batt_aging_level
+    chmod 0664 /sys/class/battchg_ext/bootup_shutdown_phase
+    chmod 0664 /sys/class/battchg_ext/system_temp_level
+    chmod 0664 /sys/class/battchg_ext/restored_capacity
+    chmod 0664 /sys/class/battman_dbg/regupdate_interval
+    chmod 0664 /sys/class/battman_dbg/log_interval
+    chmod 0664 /sys/class/battman_dbg/log_categories
+    chmod 0664 /sys/class/battman_dbg/log_level
+    chmod 0664 /sys/class/qcom-battery/ship_mode_en
+
+    # smart_charging
+    chown system system /sys/class/battchg_ext/smart_charging_activation
+    chown system system /sys/class/battchg_ext/smart_charging_interruption
+
+    # backlight
+    wait /sys/class/backlight/panel0-backlight/brightness 100
+    chown system system /sys/class/backlight/panel0-backlight/brightness
+
+service tad /vendor/bin/tad /dev/block/bootdevice/by-name/TA 0,16
+    user oem_2997
+    group oem_2997 root
+    socket tad stream 0660 system oem_2993
+    class trimarea
+    seclabel u:r:tad:s0
+
+service msim_sh /odm/bin/init.qcom.msim.sh
+    user root
+    group root
+    oneshot
 
 on property:vendor.post_boot.parsed=1
     # IRQ Tuning
@@ -81,6 +186,3 @@ on property:ro.vendor.ltalabel.model=SO-53D
 
 on property:sys.boot_completed=1
      swapon_all /vendor/etc/fstab.zram
-
-on init
-    write /sys/kernel/cnss/recovery 1
