@@ -1,4 +1,5 @@
-# Stock package version: XQ-DQ72_Customized_SEA_67.2.A.3.178
+## All proprietary files from this list, unless pinned and noted otherwise,
+## are from XQ-DQ72 (Customized SEA - 67.2.A.3.178).
 
 # ACDBs
 vendor/etc/acdbdata/ffv_models/ffv__5.0.1_0.1__3.0.0_0.0__eai_2.10_enpu3.pmd
