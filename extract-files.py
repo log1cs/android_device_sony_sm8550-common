@@ -123,10 +123,6 @@ blob_fixups: blob_fixups_user_type = {
                           b'cpufreq-cpu%d\x00\x00\x00\x00\x00\x00s_app_stop\x00%s'),
     'vendor/lib64/hw/fingerprint.default.so': blob_fixup()
     .binary_regex_replace(b'bix.fingerprint', b'fingerprint\x00\x00\x00\x00'),
-    'vendor/lib64/nfc_nci.nqx.default.hw.so': blob_fixup()
-    .add_needed(
-        'libbase_shim.so'
-    ),
     (
         'vendor/bin/poweropt-service',
         'vendor/lib64/libaodoptfeature.so',
