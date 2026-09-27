@@ -182,6 +182,7 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.sh \
     init.qti.kernel.rc \
+    init.qti.kernel.sh \
     init.recovery.qcom.rc \
     init.target.rc \
     init.sony.rc \
