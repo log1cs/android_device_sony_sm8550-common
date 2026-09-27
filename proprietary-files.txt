@@ -1237,10 +1237,6 @@ vendor/lib64/libqcbor.so
 vendor/bin/hw/vendor.semc.hardware.spc-service
 vendor/etc/init/vendor.semc.hardware.spc-service.rc
 
-# SSR
-vendor/bin/ssr_setup
-vendor/bin/subsystem_ramdump
-
 # Secd
 system_ext/etc/permissions/jp.co.sony.mc.misctasdklibrary.xml
 system_ext/framework/jp.co.sony.mc.misctasdklibrary.jar
