@@ -1,0 +1,28 @@
+[
+  {
+    "repository": "PixelOS-AOSP/android_hardware_sony",
+    "target_path": "hardware/sony"
+  },
+  {
+    "repository": "PixelOS-Devices/android_kernel_sony_sm8550",
+    "target_path": "kernel/sony/sm8550"
+  },
+  {
+    "repository": "PixelOS-Devices/android_kernel_sony_sm8550-devicetrees",
+    "target_path": "kernel/sony/sm8550-devicetrees"
+  },
+  {
+    "repository": "PixelOS-Devices/android_kernel_sony_sm8550-modules",
+    "target_path": "kernel/sony/sm8550-modules"
+  },
+  {
+    "remote": "gitlab",
+    "repository": "NoPrincessHere/proprietary_vendor_sony_extras",
+    "target_path": "vendor/sony/extras"
+  },
+  {
+    "remote": "gitlab",
+    "repository": "NoPrincessHere/proprietary_vendor_sony_sm8550-common",
+    "target_path": "vendor/sony/sm8550-common"
+  }
+]
