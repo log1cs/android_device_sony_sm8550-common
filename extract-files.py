@@ -72,6 +72,9 @@ blob_fixups: blob_fixups_user_type = {
     .add_needed(
         'android.hardware.security.rkp-V3-ndk.so'
     ),
+    'vendor/lib64/libarcsoft_hdr_adapter.so': blob_fixup()
+        .add_needed('liblog.so')
+        .add_needed('libcutils.so'),
     'vendor/bin/slim_daemon': blob_fixup()
     .add_needed(
         'libc++_shared.so',
