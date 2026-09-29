@@ -144,7 +144,6 @@ vendor/lib64/libvui_dmgr_client.so
 vendor/lib64/vendor.qti.hardware.pal@1.0-impl.so
 
 # Audio configs
-vendor/etc/audio/sku_kalama/mixer_paths_kalama_qrd.xml
 vendor/etc/audio/sku_kalama/resourcemanager_kalama_qrd.xml
 vendor/etc/audio_policy_volumes.xml
 vendor/etc/default_volume_tables.xml
@@ -1273,7 +1272,6 @@ vendor/etc/init/vendor.sensors.sscrpcd.rc
 vendor/etc/permissions/vendor-qti-hardware-sensorscalibrate.xml
 vendor/etc/sensors/config/kailua_ak991x_0.json
 vendor/etc/sensors/config/kailua_ak991x_0_somc_platform.json
-vendor/etc/sensors/config/kailua_ak991x_0_somc_product.json
 vendor/etc/sensors/config/kailua_bmp5_0_somc_platform.json
 vendor/etc/sensors/config/kailua_bu52053nvx_0.json
 vendor/etc/sensors/config/kailua_default_sensors.json
