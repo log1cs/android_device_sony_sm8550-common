@@ -75,6 +75,12 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/libarcsoft_hdr_adapter.so': blob_fixup()
         .add_needed('liblog.so')
         .add_needed('libcutils.so'),
+    'vendor/lib64/libmorpho_single_camera.so': blob_fixup()
+        .clear_symbol_version('remote_handle64_close')
+        .clear_symbol_version('remote_handle64_invoke')
+        .clear_symbol_version('remote_handle64_open')
+        .clear_symbol_version('rpcmem_alloc')
+        .clear_symbol_version('rpcmem_free'),
     'vendor/bin/slim_daemon': blob_fixup()
     .add_needed(
         'libc++_shared.so',
